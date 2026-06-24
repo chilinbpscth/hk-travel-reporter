@@ -92,7 +92,7 @@ export function PosterStudio({
 
         <div className={styles.completionNote}>
           <strong>Classroom next step</strong>
-          <p>Share the poster with your group. Use your speaking order to introduce the attraction.</p>
+          <p>Share the poster with your group. Use First, Second, Next and Finally to introduce the four 4R sections.</p>
         </div>
       </section>
 

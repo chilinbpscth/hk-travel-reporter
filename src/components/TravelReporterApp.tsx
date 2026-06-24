@@ -5,7 +5,7 @@ import { attractions, getAttraction } from "@/data/attractions";
 import { createEmptySession, readStoredSession, STORAGE_KEY } from "@/lib/session";
 import type { Category, ChatMessage, Fact, SessionState, Stage } from "@/lib/types";
 import { StageHeader } from "./StageHeader";
-import { LearnStep, WelcomeStep } from "./WelcomeLearn";
+import { WelcomeStep } from "./WelcomeLearn";
 import { InterviewWorkspace } from "./InterviewWorkspace";
 import { NotesReview } from "./NotesReview";
 import { ReportRoom } from "./ReportRoom";
@@ -51,9 +51,27 @@ export default function TravelReporterApp() {
     const fullFact = attraction.facts.find((candidate) => candidate.id === fact.id);
     if (!fullFact) return;
     setState((current) => {
-      const existing = current.notes[fullFact.category];
-      if (existing.some((item) => item.id === fullFact.id)) return current;
-      return { ...current, notes: { ...current.notes, [fullFact.category]: [...existing, fullFact] } };
+      if (current.savedFacts.some((item) => item.id === fullFact.id)) return current;
+      if (Object.values(current.notes).flat().some((item) => item.id === fullFact.id)) return current;
+      return { ...current, savedFacts: [...current.savedFacts, fullFact] };
+    });
+  }
+
+  function assignFact(category: Category, id: string) {
+    setState((current) => {
+      const fact = current.savedFacts.find((item) => item.id === id) ?? Object.values(current.notes).flat().find((item) => item.id === id);
+      if (!fact) return current;
+      const nextNotes = {
+        location: current.notes.location.filter((item) => item.id !== id),
+        features: current.notes.features.filter((item) => item.id !== id),
+        value: current.notes.value.filter((item) => item.id !== id),
+        activities: current.notes.activities.filter((item) => item.id !== id),
+      };
+      return {
+        ...current,
+        savedFacts: current.savedFacts.filter((item) => item.id !== id),
+        notes: { ...nextNotes, [category]: [...nextNotes[category], fact] },
+      };
     });
   }
 
@@ -61,6 +79,7 @@ export default function TravelReporterApp() {
     setState((current) => ({
       ...current,
       notes: { ...current.notes, [category]: current.notes[category].filter((fact) => fact.id !== id) },
+      savedFacts: [...current.savedFacts, ...current.notes[category].filter((fact) => fact.id === id)],
     }));
   }
 
@@ -83,28 +102,34 @@ export default function TravelReporterApp() {
           attractionId={state.attractionId}
           onStudentCode={(studentCode) => patchState({ studentCode })}
           onAttraction={(attractionId) => patchState({ attractionId })}
-          onContinue={() => setStage("learn")}
+          onContinue={startInterview}
         />
       )}
-      {state.stage === "learn" && <LearnStep attraction={attraction} onContinue={startInterview} />}
       {state.stage === "interview" && (
         <InterviewWorkspace
           state={state}
           attraction={attraction}
           onMessages={(messages) => patchState({ messages })}
           onSaveFact={saveFact}
+          onAssignFact={assignFact}
           onContinue={() => setStage("notes")}
         />
       )}
       {state.stage === "notes" && (
-        <NotesReview state={state} attraction={attraction} onRemove={removeFact} onBack={() => setStage("interview")} onContinue={() => setStage("report")} />
+        <NotesReview
+          state={state}
+          attraction={attraction}
+          onRemove={removeFact}
+          onAssignFact={assignFact}
+          onBack={() => setStage("interview")}
+          onContinue={() => setStage("report")}
+        />
       )}
       {state.stage === "report" && (
         <ReportRoom
           state={state}
           attraction={attraction}
           onDrafts={(drafts) => patchState({ drafts })}
-          onOrder={(speakingOrder) => patchState({ speakingOrder })}
           onBack={() => setStage("notes")}
           onContinue={() => setStage("poster")}
         />

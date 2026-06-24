@@ -85,6 +85,7 @@ export type SessionState = {
   attractionId: string;
   stage: Stage;
   messages: ChatMessage[];
+  savedFacts: Fact[];
   notes: Notes;
   drafts: Drafts;
   speakingOrder: Category[];

@@ -35,15 +35,22 @@ export function WelcomeStep({
         </div>
         <div className={styles.startCard}>
           <p className={styles.cardKicker}>Reporter check-in</p>
-          <label className={styles.fieldLabel} htmlFor="student-code">Your student code</label>
-          <input
-            id="student-code"
-            className={styles.textInput}
-            value={studentCode}
-            onChange={(event) => onStudentCode(event.target.value.slice(0, 20))}
-            placeholder="e.g. 4A-12"
-            autoComplete="off"
-          />
+          <fieldset className={styles.groupFieldset}>
+            <legend>Choose your group</legend>
+            <div className={styles.groupChoices}>
+              {["Group 1", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6"].map((group) => (
+                <button
+                  key={group}
+                  type="button"
+                  className={`${styles.groupChoice} ${studentCode === group ? styles.selectedChoice : ""}`}
+                  onClick={() => onStudentCode(group)}
+                  aria-pressed={studentCode === group}
+                >
+                  {group}
+                </button>
+              ))}
+            </div>
+          </fieldset>
           <fieldset className={styles.attractionFieldset}>
             <legend>Choose one attraction</legend>
             <div className={styles.attractionChoices}>
@@ -113,5 +120,33 @@ export function LearnStep({ attraction, onContinue }: { attraction: Attraction; 
         </button>
       </section>
     </main>
+  );
+}
+
+export function MiniLessonPanel({ attraction }: { attraction: Attraction }) {
+  const order: Category[] = ["location", "features", "value", "activities"];
+  return (
+    <section className={styles.inlineLesson}>
+      <div className={styles.inlineLessonHeader}>
+        <div>
+          <p className={styles.eyebrow}>4R mini lesson</p>
+          <h2>Read · Research · Record · Report</h2>
+          <p>Use these four sentence frames when you interview the local guide.</p>
+        </div>
+        <div className={styles.lessonAttraction} style={{ "--accent": attraction.accent } as React.CSSProperties}>
+          <img src={attraction.image} alt={attraction.name} />
+          <span><small>Your topic</small><strong>{attraction.name}</strong><em>{attraction.district}</em></span>
+        </div>
+      </div>
+      <div className={styles.frameGrid}>
+        {order.map((category, index) => (
+          <article className={styles.frameCard} key={category}>
+            <span className={styles.frameNumber}>0{index + 1}</span>
+            <p>{categoryLabels[category].title}</p>
+            <strong>{sentenceStarters[category]}<mark>______</mark>.</strong>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 }

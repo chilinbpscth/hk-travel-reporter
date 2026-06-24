@@ -14,13 +14,14 @@ Open [http://localhost:3000](http://localhost:3000). Mock mode works without API
 
 ## Student flow
 
-1. Learn four attraction-report sentence frames.
-2. Interview a local guide and save approved facts.
-3. Review and categorise notes.
-4. Write four original sentences and set a speaking order.
-5. Generate an illustration and export an accurate A4 poster.
+1. Choose Group 1–6 and one attraction.
+2. Read the 4R mini lesson on the interview page.
+3. Type questions to interview a local guide and save approved fact cards.
+4. Drag saved fact cards into Where, Features, Why Visit and Activities.
+5. Write and save four original group sentences.
+6. Generate an illustration and export an accurate A4 poster.
 
-Progress is stored in `localStorage` under `hk-travel-reporter-session-v1`.
+Progress is stored in `localStorage` under `hk-travel-reporter-session-v1`, so refresh restores the work on the same device. Multi-device group sync would require a shared backend store.
 
 ## R'Odyssey adapters
 

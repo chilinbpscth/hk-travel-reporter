@@ -273,10 +273,33 @@
   border: 0;
 }
 
-.attractionFieldset legend {
+.attractionFieldset legend,
+.groupFieldset legend {
   margin-bottom: 9px;
   font-size: 13px;
   font-weight: 800;
+}
+
+.groupFieldset {
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+}
+
+.groupChoices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.groupChoice {
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.66);
+  font-weight: 900;
+  cursor: pointer;
 }
 
 .attractionChoices {
@@ -526,6 +549,35 @@
 
 .lessonExample p {
   margin: 2px 0 0;
+}
+
+.inlineLesson {
+  margin-bottom: 28px;
+  padding: 22px;
+  border: 1px solid rgba(86, 105, 95, 0.18);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(225, 188, 92, 0.18) 1px, transparent 1px) 0 0 / 18px 18px,
+    var(--cream-50);
+}
+
+.inlineLessonHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.inlineLesson h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 48px);
+  letter-spacing: -0.035em;
+}
+
+.inlineLessonHeader p:last-child {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
 }
 
 .topicBadge,
@@ -785,6 +837,47 @@
   font-weight: 900;
 }
 
+.factTray {
+  margin: 0 16px 12px;
+  padding: 12px;
+  border: 1px dashed var(--mint-500);
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.factTray > strong {
+  display: block;
+  color: var(--mint-700);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.factTray > p {
+  margin: 4px 0 8px;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.draggableFact,
+.droppedFact {
+  width: 100%;
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--cream-100);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.42;
+  text-align: left;
+  cursor: grab;
+}
+
+.draggableFact:active,
+.droppedFact:active {
+  cursor: grabbing;
+}
+
 .noteSections {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -797,6 +890,12 @@
   padding: 12px;
   border: 1px solid rgba(132, 119, 80, 0.24);
   background: rgba(255, 255, 255, 0.62);
+}
+
+.noteSection:focus-within,
+.noteSection:hover,
+.reviewCard:hover {
+  border-color: var(--mint-500);
 }
 
 .noteSection header {
@@ -842,6 +941,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
+}
+
+.reviewHeading + .factTray {
+  margin: 0 0 18px;
 }
 
 .reviewCard {
@@ -988,6 +1091,10 @@
   align-items: start;
 }
 
+.reportLayoutSingle {
+  display: block;
+}
+
 .writingDesk {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1006,6 +1113,10 @@
   align-items: center;
   gap: 9px;
   color: var(--mint-700);
+}
+
+.writingCard header span {
+  flex: 1;
 }
 
 .writingCard header span > * {
@@ -1028,6 +1139,20 @@
   color: var(--ink-soft);
   background: var(--cream-100);
   font-size: 13px;
+}
+
+.saveDraftButton {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid var(--mint-700);
+  color: var(--mint-700);
+  background: white;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
 }
 
 .starterRow {

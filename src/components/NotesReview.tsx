@@ -7,12 +7,14 @@ export function NotesReview({
   state,
   attraction,
   onRemove,
+  onAssignFact,
   onBack,
   onContinue,
 }: {
   state: SessionState;
   attraction: Attraction;
   onRemove: (category: Category, id: string) => void;
+  onAssignFact: (category: Category, id: string) => void;
   onBack: () => void;
   onContinue: () => void;
 }) {
@@ -22,14 +24,40 @@ export function NotesReview({
         <div>
           <p className={styles.eyebrow}>Editor&apos;s desk</p>
           <h1>Check your research notes</h1>
-          <p>Every fact below came from the approved attraction database. Keep the clearest fact in each section.</p>
+          <p>Drag saved fact cards into the four 4R sections. Each fact came from the approved attraction database.</p>
         </div>
         <div className={styles.approvedStamp}><CheckCircle2 size={25} /><span><strong>Source-grounded</strong><small>{attraction.sources.length} approved sources</small></span></div>
       </section>
 
+      <section className={styles.factTray}>
+        <strong>Saved fact cards</strong>
+        <p>Drag these into the correct section before writing your report.</p>
+        {state.savedFacts.length ? state.savedFacts.map((fact) => (
+          <button
+            type="button"
+            className={styles.draggableFact}
+            key={fact.id}
+            data-testid={`saved-fact-${fact.id}`}
+            draggable
+            onDragStart={(event) => event.dataTransfer.setData("text/plain", fact.id)}
+          >
+            {fact.text}
+          </button>
+        )) : <p className={styles.emptyNote}>All saved facts are already placed.</p>}
+      </section>
+
       <section className={styles.reviewGrid}>
         {(Object.keys(categoryLabels) as Category[]).map((category) => (
-          <article className={styles.reviewCard} key={category}>
+          <article
+            className={styles.reviewCard}
+            key={category}
+            data-testid={`drop-${category}`}
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={(event) => {
+              event.preventDefault();
+              onAssignFact(category, event.dataTransfer.getData("text/plain"));
+            }}
+          >
             <header><small>{categoryLabels[category].title}</small><strong>{categoryLabels[category].short}</strong></header>
             <div>
               {state.notes[category].map((fact) => (

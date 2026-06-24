@@ -10,6 +10,7 @@ export function createEmptySession(sessionId = "pending"): SessionState {
     attractionId: "",
     stage: "welcome",
     messages: [],
+    savedFacts: [],
     notes: { location: [], features: [], value: [], activities: [] },
     drafts: { location: "", features: "", value: "", activities: "" },
     speakingOrder: ["location", "features", "value", "activities"],
