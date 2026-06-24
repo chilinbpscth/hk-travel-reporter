@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hong Kong Travel Reporter
 
-## Getting Started
+A source-grounded English learning prototype for Primary 4–5 students.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Mock mode works without API keys.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Student flow
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Learn four attraction-report sentence frames.
+2. Interview a local guide and save approved facts.
+3. Review and categorise notes.
+4. Write four original sentences and set a speaking order.
+5. Generate an illustration and export an accurate A4 poster.
 
-## Learn More
+Progress is stored in `localStorage` under `hk-travel-reporter-session-v1`.
 
-To learn more about Next.js, take a look at the following resources:
+## R'Odyssey adapters
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set `CHAT_PROVIDER=rodyssey` and/or `IMAGE_PROVIDER=rodyssey` in `.env.local`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The chat adapter expects a JSON response containing one category:
 
-## Deploy on Vercel
+```json
+{ "category": "location" }
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Allowed categories are `location`, `features`, `value`, `activities`, and `off_topic`. R'Odyssey classifies the question only; approved facts are composed locally.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The image adapter sends the server-authored attraction prompt and expects:
+
+```json
+{ "imageUrl": "https://..." }
+```
+
+The returned URL must allow browser CORS for PNG export. A data URL also works. Update `src/lib/adapters/` if the production payload differs.
+
+## Verification
+
+```bash
+npm run lint
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
+```
+
+Review `src/data/attractions.ts` before classroom deployment. sky100 is currently marked with a renovation status note from its official source.
