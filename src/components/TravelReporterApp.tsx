@@ -3,11 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { attractions, getAttraction } from "@/data/attractions";
 import { createEmptySession, readStoredSession, STORAGE_KEY } from "@/lib/session";
-import type { Category, ChatMessage, Fact, SessionState, Stage } from "@/lib/types";
+import type { ChatMessage, Fact, SessionState, Stage } from "@/lib/types";
 import { StageHeader } from "./StageHeader";
 import { WelcomeStep } from "./WelcomeLearn";
 import { InterviewWorkspace } from "./InterviewWorkspace";
-import { ReportRoom } from "./ReportRoom";
 import { PosterStudio } from "./PosterStudio";
 import styles from "./travel-reporter.module.css";
 
@@ -51,26 +50,7 @@ export default function TravelReporterApp() {
     if (!fullFact) return;
     setState((current) => {
       if (current.savedFacts.some((item) => item.id === fullFact.id)) return current;
-      if (Object.values(current.notes).flat().some((item) => item.id === fullFact.id)) return current;
       return { ...current, savedFacts: [...current.savedFacts, fullFact] };
-    });
-  }
-
-  function assignFact(category: Category, id: string) {
-    setState((current) => {
-      const fact = current.savedFacts.find((item) => item.id === id) ?? Object.values(current.notes).flat().find((item) => item.id === id);
-      if (!fact) return current;
-      const nextNotes = {
-        location: current.notes.location.filter((item) => item.id !== id),
-        features: current.notes.features.filter((item) => item.id !== id),
-        value: current.notes.value.filter((item) => item.id !== id),
-        activities: current.notes.activities.filter((item) => item.id !== id),
-      };
-      return {
-        ...current,
-        savedFacts: current.savedFacts.filter((item) => item.id !== id),
-        notes: { ...nextNotes, [category]: [...nextNotes[category], fact] },
-      };
     });
   }
 
@@ -102,16 +82,7 @@ export default function TravelReporterApp() {
           attraction={attraction}
           onMessages={(messages) => patchState({ messages })}
           onSaveFact={saveFact}
-          onAssignFact={assignFact}
-          onContinue={() => setStage("report")}
-        />
-      )}
-      {state.stage === "report" && (
-        <ReportRoom
-          state={state}
-          attraction={attraction}
           onDrafts={(drafts) => patchState({ drafts })}
-          onBack={() => setStage("interview")}
           onContinue={() => setStage("poster")}
         />
       )}
@@ -120,7 +91,7 @@ export default function TravelReporterApp() {
           state={state}
           attraction={attraction}
           onImage={(imageUrl, imageAttemptsUsed) => patchState({ imageUrl, imageAttemptsUsed })}
-          onBack={() => setStage("report")}
+          onBack={() => setStage("interview")}
         />
       )}
     </div>

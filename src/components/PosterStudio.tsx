@@ -29,7 +29,7 @@ export function PosterStudio({
     setGenerating(true);
     setError("");
     try {
-      const selectedFactIds = Object.values(state.notes).flat().map((fact) => fact.id);
+      const selectedFactIds = state.savedFacts.map((fact) => fact.id);
       const response = await fetch("/api/image", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

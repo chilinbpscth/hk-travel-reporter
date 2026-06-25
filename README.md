@@ -28,8 +28,8 @@ Open [http://localhost:3000](http://localhost:3000). Mock mode works without API
 1. Choose Group 1–6 and one of 10 Hong Kong attractions.
 2. Read the 4R mini lesson on the interview page.
 3. Type questions to interview a local guide and save approved fact cards.
-4. Drag saved fact cards into Where, Features, Why Visit and Activities.
-5. Write and save four original group sentences.
+4. Read the common saved-notes notebook and choose useful details.
+5. Write and save four original group sentences on the same page.
 6. Generate an illustration and export an accurate A4 poster.
 
 Progress is stored in `localStorage` under `hk-travel-reporter-session-v1`, so refresh restores the work on the same device. Multi-device group sync would require a shared backend store.

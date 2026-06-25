@@ -1,10 +1,9 @@
-import { BookOpen, FileText, MessageCircle, Newspaper, RotateCcw } from "lucide-react";
+import { BookOpen, MessageCircle, Newspaper, RotateCcw } from "lucide-react";
 import type { Stage } from "@/lib/types";
 import styles from "./travel-reporter.module.css";
 
 const steps: { id: Exclude<Stage, "welcome">; label: string; icon: typeof BookOpen }[] = [
-  { id: "interview", label: "4R Interview", icon: MessageCircle },
-  { id: "report", label: "Report", icon: FileText },
+  { id: "interview", label: "Research & Write", icon: MessageCircle },
   { id: "poster", label: "Poster", icon: Newspaper },
 ];
 

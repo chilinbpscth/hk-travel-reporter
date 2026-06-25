@@ -24,14 +24,18 @@ export function readStoredSession(value: string | null): SessionState | null {
   try {
     const parsed = JSON.parse(value) as Partial<SessionState>;
     if (parsed.version !== 1 || typeof parsed.sessionId !== "string") return null;
-    return { ...createEmptySession(parsed.sessionId), ...parsed } as SessionState;
+    const restored = { ...createEmptySession(parsed.sessionId), ...parsed } as SessionState;
+    if ((restored.stage as string) === "report") restored.stage = "interview";
+    const placedFacts = Object.values(restored.notes).flat();
+    if (placedFacts.length) {
+      const seen = new Set(restored.savedFacts.map((fact) => fact.id));
+      restored.savedFacts = [...restored.savedFacts, ...placedFacts.filter((fact) => !seen.has(fact.id))];
+      restored.notes = { location: [], features: [], value: [], activities: [] };
+    }
+    return restored;
   } catch {
     return null;
   }
-}
-
-export function hasAllNotes(state: SessionState) {
-  return (Object.keys(state.notes) as Category[]).every((category) => state.notes[category].length > 0);
 }
 
 export function hasAllDrafts(state: SessionState) {

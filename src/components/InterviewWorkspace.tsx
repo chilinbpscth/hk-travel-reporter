@@ -1,10 +1,11 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, ExternalLink, LoaderCircle, MapPinned, NotebookPen, Send, Sparkles } from "lucide-react";
-import { categoryLabels } from "@/data/attractions";
-import { hasAllNotes } from "@/lib/session";
-import type { Attraction, Category, ChatMessage, ChatResponse, Fact, SessionState } from "@/lib/types";
+import { ArrowRight, Check, ExternalLink, LoaderCircle, MapPinned, NotebookPen, PenLine, Quote, Save, Send } from "lucide-react";
+import { categoryLabels, sentenceStarters } from "@/data/attractions";
+import { hasAllDrafts } from "@/lib/session";
+import type { Attraction, Category, ChatMessage, ChatResponse, Drafts, Fact, SessionState } from "@/lib/types";
 import { MiniLessonPanel } from "./WelcomeLearn";
 import styles from "./travel-reporter.module.css";
 
@@ -13,21 +14,21 @@ export function InterviewWorkspace({
   attraction,
   onMessages,
   onSaveFact,
-  onAssignFact,
+  onDrafts,
   onContinue,
 }: {
   state: SessionState;
   attraction: Attraction;
   onMessages: (messages: ChatMessage[]) => void;
   onSaveFact: (fact: Pick<Fact, "id" | "text" | "category">) => void;
-  onAssignFact: (category: Category, id: string) => void;
+  onDrafts: (drafts: Drafts) => void;
   onContinue: () => void;
 }) {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const chatLogRef = useRef<HTMLDivElement>(null);
-  const savedIds = new Set([...state.savedFacts, ...Object.values(state.notes).flat()].map((fact) => fact.id));
+  const savedIds = new Set(state.savedFacts.map((fact) => fact.id));
   const shownFactIds = state.messages.flatMap((item) => item.facts?.map((fact) => fact.id) ?? []);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export function InterviewWorkspace({
         <div>
           <p className={styles.eyebrow}>Field interview</p>
           <h1>Interview your local guide</h1>
-          <p>Ask questions, read carefully and save useful facts to your notebook.</p>
+          <p>Ask questions, save useful notes, then use the notes to write four reporter sentences.</p>
         </div>
         <div className={styles.topicBadge}>
           <MapPinned size={22} />
@@ -127,53 +128,19 @@ export function InterviewWorkspace({
             <div><NotebookPen size={23} /><span><strong>Reporter&apos;s Notebook</strong><small>Collect one fact in each section.</small></span></div>
             <span>{savedIds.size} saved</span>
           </div>
-          <section className={styles.factTray} aria-label="Saved fact cards">
-            <strong>Saved fact cards</strong>
-            <p>Drag each card into the best notebook section.</p>
+          <section className={styles.savedNotesPanel} aria-label="Saved notes">
+            <strong>Saved notes</strong>
+            <p>Read these notes and choose the useful details for your four sentences.</p>
             {state.savedFacts.length ? state.savedFacts.map((fact) => (
-              <button
-                type="button"
-                className={styles.draggableFact}
+              <p
+                className={styles.savedNote}
                 key={fact.id}
                 data-testid={`saved-fact-${fact.id}`}
-                draggable
-                onDragStart={(event) => event.dataTransfer.setData("text/plain", fact.id)}
               >
                 {fact.text}
-              </button>
+              </p>
             )) : <p className={styles.emptyNote}>Save facts from the chat first.</p>}
           </section>
-          <div className={styles.noteSections}>
-            {Object.entries(categoryLabels).map(([category, label]) => {
-              const facts = state.notes[category as keyof typeof state.notes];
-              return (
-                <section
-                  key={category}
-                  className={styles.noteSection}
-                  data-testid={`drop-${category}`}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => {
-                    event.preventDefault();
-                    onAssignFact(category as Category, event.dataTransfer.getData("text/plain"));
-                  }}
-                >
-                  <header><span>{label.short}</span>{facts.length > 0 && <Check size={17} />}</header>
-                  {facts.length ? facts.map((fact) => (
-                    <button
-                      type="button"
-                      className={styles.droppedFact}
-                      key={fact.id}
-                      data-testid={`placed-fact-${fact.id}`}
-                      draggable
-                      onDragStart={(event) => event.dataTransfer.setData("text/plain", fact.id)}
-                    >
-                      {fact.text}
-                    </button>
-                  )) : <p className={styles.emptyNote}>Drop a fact here.</p>}
-                </section>
-              );
-            })}
-          </div>
           <section className={styles.notebookSupport}>
             <div className={styles.vocabularyMini}>
               <strong>Useful words</strong>
@@ -190,11 +157,66 @@ export function InterviewWorkspace({
               ))}
             </details>
           </section>
-          <button className={styles.primaryButton} type="button" onClick={onContinue} disabled={!hasAllNotes(state)}>
-            Write my report <ArrowRight size={18} />
-          </button>
-          {!hasAllNotes(state) && <p className={styles.notebookHint}><Sparkles size={15} /> Ask about all four topics to continue.</p>}
         </aside>
+      </section>
+
+      <section className={styles.inlineWritingSection}>
+        <div className={styles.reviewHeading}>
+          <div>
+            <p className={styles.eyebrow}>The newsroom</p>
+            <h1>Write from your saved notes</h1>
+            <p>Look back at your saved notes. Choose the useful details and write one sentence for each 4R question.</p>
+          </div>
+          <div className={styles.reportTopic}><img src={attraction.image} alt="" /><span><small>Reporting on</small><strong>{attraction.name}</strong></span></div>
+        </div>
+
+        <div className={styles.writingDesk}>
+          {(Object.keys(categoryLabels) as Category[]).map((category) => (
+            <article className={styles.writingCard} key={category}>
+              <header>
+                <PenLine size={19} />
+                <span><small>{categoryLabels[category].title}</small><strong>{categoryLabels[category].short}</strong></span>
+                <button
+                  className={styles.saveDraftButton}
+                  type="button"
+                  onClick={() => onDrafts({ ...state.drafts })}
+                  aria-label={`Save ${categoryLabels[category].short} sentence`}
+                >
+                  {state.drafts[category].trim() ? <Check size={16} /> : <Save size={16} />}
+                  Save
+                </button>
+              </header>
+              <blockquote><Quote size={15} /> Choose a useful detail from your saved notes.</blockquote>
+              <div className={styles.starterRow}>
+                <span>Sentence starter</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!state.drafts[category]) onDrafts({ ...state.drafts, [category]: sentenceStarters[category] });
+                  }}
+                >
+                  {sentenceStarters[category]}…
+                </button>
+              </div>
+              <label htmlFor={`draft-${category}`}>Your sentence</label>
+              <textarea
+                id={`draft-${category}`}
+                value={state.drafts[category]}
+                onChange={(event) => onDrafts({ ...state.drafts, [category]: event.target.value })}
+                placeholder={`${sentenceStarters[category]}…`}
+                rows={3}
+              />
+              <small className={styles.characterCount}>{state.drafts[category].trim().length} characters</small>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.actionRow}>
+          <p className={styles.notebookHint}>Need more information? Ask the local guide again and save more notes.</p>
+          <button className={styles.primaryButton} type="button" onClick={onContinue} disabled={!hasAllDrafts(state)}>
+            Open poster studio <ArrowRight size={18} />
+          </button>
+        </div>
       </section>
     </main>
   );

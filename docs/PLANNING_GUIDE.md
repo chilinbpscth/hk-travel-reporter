@@ -8,7 +8,7 @@ Hong Kong Travel Reporter 是一個小四至小五英文學習試作版。學生
 
 1. 用英文發問。
 2. 從回答中找出有用資料。
-3. 把資料分類。
+3. 從 saved notes 中選取有用資料。
 4. 用句式把資料重寫成自己的介紹句。
 5. 用 First, Second, Next, Finally 作口頭匯報。
 
@@ -21,8 +21,8 @@ Hong Kong Travel Reporter 是一個小四至小五英文學習試作版。學生
 | 3–5 分鐘 | 課堂引入 | 示範介紹景點要回答 Where / Features / Why Visit / Activities。 |
 | 2–3 分鐘 | 4R mini lesson | Read, Research, Record, Report；講解四個 sentence frames。 |
 | 5–7 分鐘 | Interview local guide | 學生自己輸入英文問題，不按預設問題。 |
-| 3–5 分鐘 | Drag notes | 把 saved fact cards 拖入四個分類。 |
-| 5 分鐘 | Newsroom writing | 小組每人負責一格，寫一句英文。 |
+| 3–5 分鐘 | Read saved notes | 學生從 common notebook 找出有用資料。 |
+| 5 分鐘 | Newsroom writing | 同一頁下方，小組每人負責一格，寫一句英文。 |
 | 3–5 分鐘 | Poster studio | 生成景點插圖，檢查文字及下載/展示海報。 |
 | 5–10 分鐘 | Group sharing | 用 First / Second / Next / Finally 匯報。 |
 
@@ -32,7 +32,7 @@ Hong Kong Travel Reporter 是一個小四至小五英文學習試作版。學生
 
 - Read：閱讀 mini lesson 的句式。
 - Research：向 local guide 發問。
-- Record：save fact cards，再拖入正確分類。
+- Record：save fact cards，再從 common notebook 選取有用資料。
 - Report：用自己的英文句子完成海報。
 
 ### 3.2 目標句式
@@ -119,7 +119,7 @@ Chatbot 只應根據教師核准資料回答，不應補充資料庫外內容。
 
 試課前應確認：
 
-- 學生不能未完成四類 notes 就進入 report。
+- 學生需要完成四句 report sentences 才能進入 poster。
 - Chatbot 不會提供資料庫外 facts。
 - 最終海報文字來自學生在 Newsroom 的輸入。
 - AI 圖只作插圖，不含英文文字或地圖。

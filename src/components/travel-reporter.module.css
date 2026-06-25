@@ -69,7 +69,7 @@
 
 .progress {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   gap: 4px;
 }
@@ -846,28 +846,32 @@
   font-weight: 900;
 }
 
-.factTray {
+.factTray,
+.savedNotesPanel {
   margin: 0 16px 12px;
   padding: 12px;
   border: 1px dashed var(--mint-500);
   background: rgba(255, 255, 255, 0.54);
 }
 
-.factTray > strong {
+.factTray > strong,
+.savedNotesPanel > strong {
   display: block;
   color: var(--mint-700);
   font-size: 12px;
   text-transform: uppercase;
 }
 
-.factTray > p {
+.factTray > p,
+.savedNotesPanel > p {
   margin: 4px 0 8px;
   color: var(--ink-soft);
   font-size: 12px;
 }
 
 .draggableFact,
-.droppedFact {
+.droppedFact,
+.savedNote {
   width: 100%;
   display: block;
   margin-top: 8px;
@@ -880,6 +884,10 @@
   line-height: 1.42;
   text-align: left;
   cursor: grab;
+}
+
+.savedNote {
+  cursor: default;
 }
 
 .draggableFact:active,
@@ -930,6 +938,15 @@
 .notebookPanel > .primaryButton {
   width: calc(100% - 32px);
   margin: auto 16px 0;
+}
+
+.inlineWritingSection {
+  margin-top: 34px;
+  padding: 24px;
+  border: 1px solid rgba(86, 105, 95, 0.18);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(225, 188, 92, 0.16) 1px, transparent 1px) 0 0 / 18px 18px,
+    rgba(255, 253, 246, 0.9);
 }
 
 .notebookHint {

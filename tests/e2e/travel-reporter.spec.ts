@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 const attractions = [
   {
@@ -114,27 +114,11 @@ const attractions = [
 ] as const;
 
 const questions = [
-  { text: "Where is this attraction?", category: "location" },
-  { text: "What are its main features?", category: "features" },
-  { text: "Why is it worth visiting?", category: "value" },
-  { text: "What can visitors do there?", category: "activities" },
+  "Where is this attraction?",
+  "What are its main features?",
+  "Why is it worth visiting?",
+  "What can visitors do there?",
 ] as const;
-
-async function placeSavedFact(page: Page, factId: string, category: string) {
-  await page.getByTestId(`saved-fact-${factId}`).waitFor({ state: "visible" });
-  await page.evaluate(
-    ({ factId, category }) => {
-      const source = document.querySelector(`[data-testid="saved-fact-${factId}"]`);
-      const target = document.querySelector(`[data-testid="drop-${category}"]`);
-      if (!source || !target) throw new Error(`Missing drag target for ${factId}`);
-      const dataTransfer = new DataTransfer();
-      source.dispatchEvent(new DragEvent("dragstart", { bubbles: true, dataTransfer }));
-      target.dispatchEvent(new DragEvent("dragover", { bubbles: true, cancelable: true, dataTransfer }));
-      target.dispatchEvent(new DragEvent("drop", { bubbles: true, cancelable: true, dataTransfer }));
-    },
-    { factId, category },
-  );
-}
 
 for (const attraction of attractions) {
   test(`student completes the ${attraction.id} reporting flow`, async ({ page }) => {
@@ -145,15 +129,14 @@ for (const attraction of attractions) {
     await expect(page.getByRole("heading", { name: "Read · Research · Record · Report" })).toBeVisible();
 
     for (const [index, question] of questions.entries()) {
-      await page.getByLabel("Ask your own question").fill(question.text);
+      await page.getByLabel("Ask your own question").fill(question);
       await page.getByRole("button", { name: "Send question" }).click();
       const fact = page.getByText(attraction.facts[index], { exact: true });
       await expect(fact).toBeVisible();
       await fact.locator("..").getByRole("button", { name: "Save fact" }).click();
-      await placeSavedFact(page, attraction.factIds[index], question.category);
+      await expect(page.getByTestId(`saved-fact-${attraction.factIds[index]}`)).toBeVisible();
     }
 
-    await page.getByRole("button", { name: "Write my report" }).click();
     await page.locator("#draft-location").fill("It is located in Hong Kong.");
     await page.locator("#draft-features").fill("It is famous for its special local features.");
     await page.locator("#draft-value").fill("It is worth visiting because it shows an interesting side of Hong Kong.");

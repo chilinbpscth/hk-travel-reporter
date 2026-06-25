@@ -24,11 +24,10 @@
 3. 學生閱讀 4R mini lesson。
 4. 學生向 local guide 輸入英文問題。
 5. 學生按 Save fact，把有用資料儲存成 fact card。
-6. 學生把 fact card 拖入 Where / Features / Why Visit / Activities。
-7. 四格完成後，按 Write my report。
-8. 小組每人負責一格，寫一句英文。
-9. 每格完成後按 Save。
-10. 進入 Poster Studio，生成插圖及下載/展示海報。
+6. 學生閱讀 Saved Notes，自己判斷哪些資料適合 Where / Features / Why Visit / Activities。
+7. 小組每人負責一格，在同一頁下方寫一句英文。
+8. 每格完成後按 Save。
+9. 進入 Poster Studio，生成插圖及下載/展示海報。
 
 ### 1.4 教師引導句
 
@@ -78,9 +77,9 @@
 
 如果 local guide 的回答有用，按 Save fact。
 
-### Step 6：Drag your notes
+### Step 6：Read your saved notes
 
-把 saved fact cards 拖到正確位置：
+閱讀所有 saved notes，自己找出哪些資料可以幫你完成：
 
 - Where
 - Features
