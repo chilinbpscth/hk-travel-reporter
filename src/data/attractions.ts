@@ -281,7 +281,7 @@ export const attractions: Attraction[] = [
     locationLine: "Tsim Sha Tsui waterfront",
     summary: "A classic harbour ferry experience between Kowloon and Hong Kong Island.",
     accent: "#24745d",
-    image: "/mock-images/star-ferry.svg",
+    image: "/mock-images/star-ferry.jpg",
     mapTiles: [
       "/maps/star-ferry/0-0.png",
       "/maps/star-ferry/1-0.png",
@@ -354,7 +354,7 @@ export const attractions: Attraction[] = [
     locationLine: "Victoria Peak, Hong Kong Island",
     summary: "A famous high viewpoint for seeing Hong Kong's skyline and harbour.",
     accent: "#4f7f55",
-    image: "/mock-images/the-peak.svg",
+    image: "/mock-images/the-peak.jpg",
     mapTiles: [
       "/maps/the-peak/0-0.png",
       "/maps/the-peak/1-0.png",
@@ -434,7 +434,7 @@ export const attractions: Attraction[] = [
     locationLine: "Tsim Sha Tsui waterfront",
     summary: "A harbourfront promenade celebrating Hong Kong's film culture.",
     accent: "#d55d4b",
-    image: "/mock-images/avenue-stars.svg",
+    image: "/mock-images/avenue-stars.jpg",
     mapTiles: [
       "/maps/avenue-stars/0-0.png",
       "/maps/avenue-stars/1-0.png",
@@ -507,7 +507,7 @@ export const attractions: Attraction[] = [
     locationLine: "8 Museum Drive, West Kowloon",
     summary: "A museum for Chinese art and cultural treasures in West Kowloon.",
     accent: "#b85d3f",
-    image: "/mock-images/hk-palace-museum.svg",
+    image: "/mock-images/hk-palace-museum.jpg",
     mapTiles: [
       "/maps/hk-palace-museum/0-0.png",
       "/maps/hk-palace-museum/1-0.png",
@@ -587,7 +587,7 @@ export const attractions: Attraction[] = [
     locationLine: "West Kowloon Cultural District",
     summary: "A museum of contemporary visual culture, art, design and moving image.",
     accent: "#286d68",
-    image: "/mock-images/m-plus.svg",
+    image: "/mock-images/m-plus.jpg",
     mapTiles: [
       "/maps/m-plus/0-0.png",
       "/maps/m-plus/1-0.png",
@@ -667,7 +667,7 @@ export const attractions: Attraction[] = [
     locationLine: "Penny's Bay, Lantau Island",
     summary: "A family theme park with themed lands, characters, rides and shows.",
     accent: "#5c79b8",
-    image: "/mock-images/hong-kong-disneyland.svg",
+    image: "/mock-images/hong-kong-disneyland.jpg",
     mapTiles: [
       "/maps/hong-kong-disneyland/0-0.png",
       "/maps/hong-kong-disneyland/1-0.png",
@@ -747,7 +747,7 @@ export const attractions: Attraction[] = [
     locationLine: "180 Wong Chuk Hang Road, Aberdeen",
     summary: "A theme park with rides, animal exhibits and marine life learning.",
     accent: "#26758a",
-    image: "/mock-images/ocean-park.svg",
+    image: "/mock-images/ocean-park.jpg",
     mapTiles: [
       "/maps/ocean-park/0-0.png",
       "/maps/ocean-park/1-0.png",
