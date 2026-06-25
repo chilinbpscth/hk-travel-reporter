@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of Hong Kong Palace Museum">
+  <rect width="1200" height="800" fill="#f6ecd3"/>
+  <circle cx="980" cy="130" r="84" fill="#e8b75d" opacity=".8"/>
+  <path d="M0 510c180-76 350-88 530-38 198 55 380 38 670-46v374H0z" fill="#83c8c2"/>
+  <g transform="translate(185 260)">
+    <path d="M0 300h830v70H0z" fill="#8d4a36"/>
+    <path d="M80 120h670v190H80z" fill="#d48d58"/>
+    <path d="M135 55h560l72 80H63z" fill="#a04635"/>
+    <path d="M185 0h460l58 70H127z" fill="#c4693f"/>
+    <rect x="142" y="155" width="86" height="115" rx="8" fill="#f4dca3"/>
+    <rect x="278" y="155" width="86" height="115" rx="8" fill="#f4dca3"/>
+    <rect x="414" y="155" width="86" height="115" rx="8" fill="#f4dca3"/>
+    <rect x="550" y="155" width="86" height="115" rx="8" fill="#f4dca3"/>
+    <path d="M70 120h690" stroke="#74362c" stroke-width="16" stroke-linecap="round"/>
+    <path d="M120 70h590" stroke="#74362c" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(92 565)" fill="#2f625c" opacity=".62">
+    <rect x="0" y="30" width="64" height="116"/><rect x="90" y="0" width="70" height="146"/>
+    <rect x="190" y="50" width="72" height="96"/><rect x="845" y="42" width="76" height="104"/>
+    <rect x="950" y="12" width="86" height="134"/>
+  </g>
+</svg>

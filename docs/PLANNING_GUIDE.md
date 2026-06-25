@@ -2,7 +2,7 @@
 
 ## 1. 教學定位
 
-Hong Kong Travel Reporter 是一個小四至小五英文學習試作版。學生以小組身份訪問一位「香港本地嚮導」chatbot，從核准資料中抽取景點資料，整理成四個 4R notes，再寫成四句英文介紹，最後生成 A4 景點海報。
+Hong Kong Travel Reporter 是一個小四至小五英文學習試作版。學生以小組身份訪問一位「香港本地嚮導」chatbot，從核准資料中抽取景點資料，整理成四個 4R notes，再寫成四句英文介紹，最後生成 A4 景點海報。現時試作版包含 10 個香港景點。
 
 核心目的不是讓 chatbot 代寫，而是讓學生練習：
 
@@ -66,6 +66,19 @@ Chatbot 只應根據教師核准資料回答，不應補充資料庫外內容。
 - source URL、查閱日期、教師核實狀態。
 - 核准座標、地區及交通提示。
 - image generation visual prompt。
+
+現時 10 個景點為：
+
+1. Tian Tan Buddha
+2. Wong Tai Sin Temple
+3. sky100 Hong Kong Observation Deck
+4. Star Ferry Pier
+5. The Peak
+6. Avenue of Stars
+7. Hong Kong Palace Museum
+8. M+
+9. Hong Kong Disneyland
+10. Ocean Park Hong Kong
 
 新增景點時，先更新 `src/data/attractions.ts`，再跑完整測試。
 

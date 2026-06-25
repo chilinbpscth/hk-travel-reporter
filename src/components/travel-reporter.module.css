@@ -304,15 +304,20 @@
 
 .attractionChoices {
   display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
+  max-height: min(48vh, 430px);
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
 }
 
 .attractionChoice {
-  min-height: 72px;
+  min-height: 66px;
   display: grid;
-  grid-template-columns: 78px 1fr;
+  grid-template-columns: 58px 1fr;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
   padding: 6px;
   border: 1px solid var(--line);
   border-radius: 13px;
@@ -329,8 +334,8 @@
 }
 
 .attractionChoice img {
-  width: 78px;
-  height: 60px;
+  width: 58px;
+  height: 50px;
   object-fit: cover;
   border-radius: 9px;
 }
@@ -800,9 +805,13 @@
 }
 
 .notebookPanel {
-  position: relative;
+  position: sticky;
+  top: 94px;
+  align-self: start;
   display: flex;
   flex-direction: column;
+  max-height: calc(100vh - 112px);
+  overflow-y: auto;
   padding-left: 14px;
   background:
     linear-gradient(90deg, transparent 46px, rgba(218, 115, 94, 0.25) 47px, transparent 48px),
@@ -1734,6 +1743,13 @@
     max-width: none;
   }
 
+  .notebookPanel {
+    position: relative;
+    top: auto;
+    max-height: none;
+    overflow-y: visible;
+  }
+
   .posterStudio {
     padding-top: 34px;
   }
@@ -1765,6 +1781,11 @@
 
   .welcomeCopy h1 {
     font-size: 62px;
+  }
+
+  .attractionChoices {
+    grid-template-columns: 1fr;
+    max-height: none;
   }
 
   .contentPage,

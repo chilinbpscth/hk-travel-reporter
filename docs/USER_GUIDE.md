@@ -9,7 +9,7 @@
 ### 1.2 課前準備
 
 1. 決定每組使用哪一個 Group number：Group 1–6。
-2. 決定每組研究哪一個景點。
+2. 決定每組研究哪一個景點。試作版現時提供 10 個香港景點。
 3. 先示範一次四個句式：
    - It is located in ...
    - It is famous for ...
@@ -54,7 +54,7 @@
 
 ### Step 2：Choose an attraction
 
-選擇你的小組景點。
+選擇你的小組景點。你可以在 10 個香港景點中選一個。
 
 ### Step 3：Read the 4R mini lesson
 

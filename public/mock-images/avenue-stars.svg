@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Illustration of Avenue of Stars on Victoria Harbour">
+  <defs><linearGradient id="sky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#cdebf0"/><stop offset="1" stop-color="#fff0cd"/></linearGradient></defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 430c150-36 270-27 420 18 150 44 280 42 430-8 120-40 230-39 350 8v352H0z" fill="#5bb1bf"/>
+  <g fill="#3d6670" opacity=".72">
+    <rect x="80" y="230" width="70" height="205"/><rect x="180" y="185" width="92" height="250"/>
+    <rect x="306" y="270" width="58" height="165"/><rect x="422" y="205" width="76" height="230"/>
+    <rect x="545" y="155" width="66" height="280"/><rect x="646" y="242" width="88" height="193"/>
+    <rect x="790" y="198" width="74" height="237"/><rect x="930" y="260" width="90" height="175"/>
+  </g>
+  <path d="M0 628h1200v172H0z" fill="#e9d5a2"/>
+  <path d="M0 606h1200v46H0z" fill="#8c7b56"/>
+  <g transform="translate(500 430)">
+    <circle cx="110" cy="42" r="38" fill="#c96a4f"/>
+    <path d="M110 88l-32 118h64z" fill="#c96a4f"/>
+    <path d="M65 120h90" stroke="#c96a4f" stroke-width="26" stroke-linecap="round"/>
+    <path d="M40 230h140" stroke="#8c563c" stroke-width="22" stroke-linecap="round"/>
+  </g>
+  <g fill="#d95f4d" opacity=".85">
+    <path d="M180 710l20 43 47 5-34 32 9 47-42-23-42 23 9-47-34-32 47-5z"/>
+    <path d="M950 700l18 38 42 5-31 29 8 42-37-20-38 20 8-42-30-29 42-5z"/>
+  </g>
+</svg>

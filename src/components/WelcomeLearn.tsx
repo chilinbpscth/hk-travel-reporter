@@ -59,6 +59,7 @@ export function WelcomeStep({
                   key={attraction.id}
                   type="button"
                   className={`${styles.attractionChoice} ${attractionId === attraction.id ? styles.selectedChoice : ""}`}
+                  data-testid={`attraction-${attraction.id}`}
                   onClick={() => onAttraction(attraction.id)}
                   aria-pressed={attractionId === attraction.id}
                 >

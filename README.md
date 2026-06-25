@@ -4,7 +4,7 @@ A source-grounded English learning prototype for Primary 4–5 students.
 
 ## Public prototype
 
-This repo is designed to run in mock mode first. Mock mode works without API keys and is suitable for classroom flow testing.
+This repo is designed to run in mock mode first. Mock mode works without API keys and is suitable for classroom flow testing. The current prototype includes 10 Hong Kong attractions with teacher-reviewable facts and sources.
 
 Detailed documents:
 
@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000). Mock mode works without API
 
 ## Student flow
 
-1. Choose Group 1–6 and one attraction.
+1. Choose Group 1–6 and one of 10 Hong Kong attractions.
 2. Read the 4R mini lesson on the interview page.
 3. Type questions to interview a local guide and save approved fact cards.
 4. Drag saved fact cards into Where, Features, Why Visit and Activities.
