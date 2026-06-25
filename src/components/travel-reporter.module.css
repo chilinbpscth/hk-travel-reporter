@@ -69,7 +69,7 @@
 
 .progress {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
   gap: 4px;
 }
@@ -931,6 +931,63 @@
   margin: 14px 0 18px;
   color: var(--ink-soft);
   font-size: 12px;
+}
+
+.notebookSupport {
+  margin: 0 16px 14px;
+}
+
+.vocabularyMini {
+  padding: 12px;
+  border: 1px solid var(--mint-700);
+  background: color-mix(in oklch, var(--mint-300) 14%, white);
+}
+
+.vocabularyMini strong,
+.sourceMini summary {
+  color: var(--mint-700);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.vocabularyMini div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 8px;
+}
+
+.vocabularyMini span {
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--mint-700);
+  background: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sourceMini {
+  margin-top: 9px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.sourceMini summary {
+  cursor: pointer;
+}
+
+.sourceMini a {
+  display: block;
+  margin-top: 8px;
+  color: var(--mint-700);
+  font-size: 12px;
+}
+
+.sourceMini span {
+  display: block;
+  color: var(--ink-soft);
 }
 
 .reviewHeading {

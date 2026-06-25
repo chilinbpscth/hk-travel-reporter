@@ -63,7 +63,6 @@ for (const attraction of attractions) {
       await page.getByTestId(`saved-fact-${attraction.factIds[index]}`).dragTo(page.getByTestId(`drop-${question.category}`));
     }
 
-    await page.getByRole("button", { name: "Review my notes" }).click();
     await page.getByRole("button", { name: "Write my report" }).click();
     await page.locator("#draft-location").fill("It is located in Hong Kong.");
     await page.locator("#draft-features").fill("It is famous for its special local features.");

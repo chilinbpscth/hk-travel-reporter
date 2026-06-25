@@ -75,7 +75,7 @@ export function ReportRoom({
       </section>
 
       <div className={styles.actionRow}>
-        <button className={styles.secondaryButton} type="button" onClick={onBack}><ArrowLeft size={18} /> Back to notes</button>
+        <button className={styles.secondaryButton} type="button" onClick={onBack}><ArrowLeft size={18} /> Back to interview</button>
         <button className={styles.primaryButton} type="button" onClick={onContinue} disabled={!hasAllDrafts(state)}>Open poster studio <ArrowRight size={18} /></button>
       </div>
     </main>

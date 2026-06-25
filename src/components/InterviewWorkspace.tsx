@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, LoaderCircle, MapPinned, NotebookPen, Send, Sparkles } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, LoaderCircle, MapPinned, NotebookPen, Send, Sparkles } from "lucide-react";
 import { categoryLabels } from "@/data/attractions";
 import { hasAllNotes } from "@/lib/session";
 import type { Attraction, Category, ChatMessage, ChatResponse, Fact, SessionState } from "@/lib/types";
@@ -174,8 +174,24 @@ export function InterviewWorkspace({
               );
             })}
           </div>
+          <section className={styles.notebookSupport}>
+            <div className={styles.vocabularyMini}>
+              <strong>Useful words</strong>
+              <div>
+                {attraction.vocabulary.map((item) => <span key={item.word} title={item.meaning}>{item.word}</span>)}
+              </div>
+            </div>
+            <details className={styles.sourceMini}>
+              <summary>Teacher source record · {attraction.sources.length} approved sources</summary>
+              {attraction.sources.map((source) => (
+                <a href={source.url} target="_blank" rel="noreferrer" key={source.id}>
+                  {source.label} <ExternalLink size={12} /> <span>Checked {source.accessed}</span>
+                </a>
+              ))}
+            </details>
+          </section>
           <button className={styles.primaryButton} type="button" onClick={onContinue} disabled={!hasAllNotes(state)}>
-            Review my notes <ArrowRight size={18} />
+            Write my report <ArrowRight size={18} />
           </button>
           {!hasAllNotes(state) && <p className={styles.notebookHint}><Sparkles size={15} /> Ask about all four topics to continue.</p>}
         </aside>

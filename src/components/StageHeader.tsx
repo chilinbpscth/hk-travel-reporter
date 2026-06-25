@@ -1,11 +1,9 @@
-import { BookOpen, FileText, MessageCircle, Newspaper, NotebookPen, RotateCcw } from "lucide-react";
+import { BookOpen, FileText, MessageCircle, Newspaper, RotateCcw } from "lucide-react";
 import type { Stage } from "@/lib/types";
 import styles from "./travel-reporter.module.css";
 
 const steps: { id: Exclude<Stage, "welcome">; label: string; icon: typeof BookOpen }[] = [
-  { id: "learn", label: "Learn", icon: BookOpen },
-  { id: "interview", label: "Interview", icon: MessageCircle },
-  { id: "notes", label: "Notes", icon: NotebookPen },
+  { id: "interview", label: "4R Interview", icon: MessageCircle },
   { id: "report", label: "Report", icon: FileText },
   { id: "poster", label: "Poster", icon: Newspaper },
 ];
@@ -28,7 +26,7 @@ export function StageHeader({
         <span className={styles.wordmarkMark}>HK</span>
         <span>
           <strong>Travel Reporter</strong>
-          <small>Student {studentCode}</small>
+          <small>{studentCode}</small>
         </span>
       </div>
       <nav className={styles.progress} aria-label="Project progress">

@@ -7,7 +7,6 @@ import type { Category, ChatMessage, Fact, SessionState, Stage } from "@/lib/typ
 import { StageHeader } from "./StageHeader";
 import { WelcomeStep } from "./WelcomeLearn";
 import { InterviewWorkspace } from "./InterviewWorkspace";
-import { NotesReview } from "./NotesReview";
 import { ReportRoom } from "./ReportRoom";
 import { PosterStudio } from "./PosterStudio";
 import styles from "./travel-reporter.module.css";
@@ -75,14 +74,6 @@ export default function TravelReporterApp() {
     });
   }
 
-  function removeFact(category: Category, id: string) {
-    setState((current) => ({
-      ...current,
-      notes: { ...current.notes, [category]: current.notes[category].filter((fact) => fact.id !== id) },
-      savedFacts: [...current.savedFacts, ...current.notes[category].filter((fact) => fact.id === id)],
-    }));
-  }
-
   function reset() {
     if (!window.confirm("Start a new mission? Your current work will be cleared.")) return;
     window.localStorage.removeItem(STORAGE_KEY);
@@ -112,16 +103,6 @@ export default function TravelReporterApp() {
           onMessages={(messages) => patchState({ messages })}
           onSaveFact={saveFact}
           onAssignFact={assignFact}
-          onContinue={() => setStage("notes")}
-        />
-      )}
-      {state.stage === "notes" && (
-        <NotesReview
-          state={state}
-          attraction={attraction}
-          onRemove={removeFact}
-          onAssignFact={assignFact}
-          onBack={() => setStage("interview")}
           onContinue={() => setStage("report")}
         />
       )}
@@ -130,7 +111,7 @@ export default function TravelReporterApp() {
           state={state}
           attraction={attraction}
           onDrafts={(drafts) => patchState({ drafts })}
-          onBack={() => setStage("notes")}
+          onBack={() => setStage("interview")}
           onContinue={() => setStage("poster")}
         />
       )}

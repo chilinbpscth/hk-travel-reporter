@@ -76,7 +76,7 @@ export type ChatMessage = {
 export type Notes = Record<Category, Fact[]>;
 export type Drafts = Record<Category, string>;
 
-export type Stage = "welcome" | "learn" | "interview" | "notes" | "report" | "poster";
+export type Stage = "welcome" | "interview" | "report" | "poster";
 
 export type SessionState = {
   version: 1;
