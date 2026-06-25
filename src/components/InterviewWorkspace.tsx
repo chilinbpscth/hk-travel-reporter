@@ -210,11 +210,12 @@ export function InterviewWorkspace({
                   </button>
                 </div>
                 <label htmlFor={`draft-${category}`}>Your sentence</label>
+                <p className={styles.writingGuide}>Write one sentence like: <strong>{sentenceStarters[category]} ...</strong></p>
                 <textarea
                   id={`draft-${category}`}
                   value={state.drafts[category]}
                   onChange={(event) => onDrafts({ ...state.drafts, [category]: event.target.value })}
-                  placeholder={`${sentenceStarters[category]}…`}
+                  placeholder="Type your sentence here."
                   rows={3}
                 />
                 <small className={styles.characterCount}>{state.drafts[category].trim().length} characters</small>

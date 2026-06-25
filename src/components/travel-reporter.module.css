@@ -1295,6 +1295,20 @@
   cursor: pointer;
 }
 
+.writingGuide {
+  margin: -2px 0 9px;
+  padding: 9px 11px;
+  border-left: 3px solid var(--mint-500);
+  color: var(--ink-soft);
+  background: color-mix(in oklch, var(--mint-300) 12%, white);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.writingGuide strong {
+  color: var(--mint-700);
+}
+
 .writingCard textarea {
   min-height: 92px;
   resize: vertical;
