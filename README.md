@@ -2,6 +2,17 @@
 
 A source-grounded English learning prototype for Primary 4–5 students.
 
+## Public prototype
+
+This repo is designed to run in mock mode first. Mock mode works without API keys and is suitable for classroom flow testing.
+
+Detailed documents:
+
+- [Planning guide](docs/PLANNING_GUIDE.md)
+- [User guide](docs/USER_GUIDE.md)
+- [Design spec](DESIGN_SPEC.md)
+- [Asset credits](ASSET_CREDITS.md)
+
 ## Run locally
 
 ```bash
