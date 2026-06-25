@@ -170,45 +170,57 @@ export function InterviewWorkspace({
           <div className={styles.reportTopic}><img src={attraction.image} alt="" /><span><small>Reporting on</small><strong>{attraction.name}</strong></span></div>
         </div>
 
-        <div className={styles.writingDesk}>
-          {(Object.keys(categoryLabels) as Category[]).map((category) => (
-            <article className={styles.writingCard} key={category}>
-              <header>
-                <PenLine size={19} />
-                <span><small>{categoryLabels[category].title}</small><strong>{categoryLabels[category].short}</strong></span>
-                <button
-                  className={styles.saveDraftButton}
-                  type="button"
-                  onClick={() => onDrafts({ ...state.drafts })}
-                  aria-label={`Save ${categoryLabels[category].short} sentence`}
-                >
-                  {state.drafts[category].trim() ? <Check size={16} /> : <Save size={16} />}
-                  Save
-                </button>
-              </header>
-              <blockquote><Quote size={15} /> Choose a useful detail from your saved notes.</blockquote>
-              <div className={styles.starterRow}>
-                <span>Sentence starter</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (!state.drafts[category]) onDrafts({ ...state.drafts, [category]: sentenceStarters[category] });
-                  }}
-                >
-                  {sentenceStarters[category]}…
-                </button>
-              </div>
-              <label htmlFor={`draft-${category}`}>Your sentence</label>
-              <textarea
-                id={`draft-${category}`}
-                value={state.drafts[category]}
-                onChange={(event) => onDrafts({ ...state.drafts, [category]: event.target.value })}
-                placeholder={`${sentenceStarters[category]}…`}
-                rows={3}
-              />
-              <small className={styles.characterCount}>{state.drafts[category].trim().length} characters</small>
-            </article>
-          ))}
+        <div className={styles.writingSupportLayout}>
+          <aside className={styles.referenceNotes} aria-label="Reference notes for writing">
+            <strong>Reference notes</strong>
+            <p>Keep these notes beside you while you write.</p>
+            {state.savedFacts.length ? state.savedFacts.map((fact) => (
+              <p className={styles.savedNote} key={`reference-${fact.id}`}>
+                {fact.text}
+              </p>
+            )) : <p className={styles.emptyNote}>Save facts from the chat first.</p>}
+          </aside>
+
+          <div className={styles.writingDesk}>
+            {(Object.keys(categoryLabels) as Category[]).map((category) => (
+              <article className={styles.writingCard} key={category}>
+                <header>
+                  <PenLine size={19} />
+                  <span><small>{categoryLabels[category].title}</small><strong>{categoryLabels[category].short}</strong></span>
+                  <button
+                    className={styles.saveDraftButton}
+                    type="button"
+                    onClick={() => onDrafts({ ...state.drafts })}
+                    aria-label={`Save ${categoryLabels[category].short} sentence`}
+                  >
+                    {state.drafts[category].trim() ? <Check size={16} /> : <Save size={16} />}
+                    Save
+                  </button>
+                </header>
+                <blockquote><Quote size={15} /> Choose a useful detail from your saved notes.</blockquote>
+                <div className={styles.starterRow}>
+                  <span>Sentence starter</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!state.drafts[category]) onDrafts({ ...state.drafts, [category]: sentenceStarters[category] });
+                    }}
+                  >
+                    {sentenceStarters[category]}…
+                  </button>
+                </div>
+                <label htmlFor={`draft-${category}`}>Your sentence</label>
+                <textarea
+                  id={`draft-${category}`}
+                  value={state.drafts[category]}
+                  onChange={(event) => onDrafts({ ...state.drafts, [category]: event.target.value })}
+                  placeholder={`${sentenceStarters[category]}…`}
+                  rows={3}
+                />
+                <small className={styles.characterCount}>{state.drafts[category].trim().length} characters</small>
+              </article>
+            ))}
+          </div>
         </div>
 
         <div className={styles.actionRow}>
